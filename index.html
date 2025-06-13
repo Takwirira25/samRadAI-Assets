@@ -92,33 +92,16 @@
       document.body.innerHTML = "Access denied.";
       throw new Error("Unauthorized");
     }
-  </script>
 
-  <h1>samRad Asset Volume Tracker</h1>
-  <div style="text-align:center;">
-    <input type="text" id="asset" placeholder="Asset (e.g. BTC)" />
-    <input type="number" id="weight" placeholder="Volume " />
-    <button onclick="addAsset()">Add</button>
-    <button onclick="exportJSON()">Export</button>
-    <button onclick="importJSON()">Import</button>
-    <input type="file" id="fileInput" style="display:none" onchange="handleFile(event)" />
-  </div>
-
-  <table id="assetTable">
-    <thead>
-      <tr><th>Asset</th><th>Volume </th><th>Actions</th></tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-  <script>
-    let assets = [];
+    let assets = JSON.parse(localStorage.getItem('assets') || '[]');
+    renderTable();
 
     function addAsset() {
       const asset = document.getElementById('asset').value.trim();
       const weight = parseFloat(document.getElementById('weight').value);
       if (!asset || isNaN(weight)) return alert('Valid asset and volume required.');
       assets.push({ asset, weight });
+      saveAssets();
       document.getElementById('asset').value = '';
       document.getElementById('weight').value = '';
       renderTable();
@@ -139,7 +122,12 @@
 
     function removeAsset(index) {
       assets.splice(index, 1);
+      saveAssets();
       renderTable();
+    }
+
+    function saveAssets() {
+      localStorage.setItem('assets', JSON.stringify(assets));
     }
 
     function exportJSON() {
@@ -162,6 +150,7 @@
       reader.onload = e => {
         try {
           assets = JSON.parse(e.target.result);
+          saveAssets();
           renderTable();
         } catch (err) {
           alert('Invalid JSON file');
@@ -170,5 +159,22 @@
       reader.readAsText(file);
     }
   </script>
+
+  <h1>samRad Asset Volume Tracker</h1>
+  <div style="text-align:center;">
+    <input type="text" id="asset" placeholder="Asset (e.g. BTC)" />
+    <input type="number" id="weight" placeholder="Volume " />
+    <button onclick="addAsset()">Add</button>
+    <button onclick="exportJSON()">Export</button>
+    <button onclick="importJSON()">Import</button>
+    <input type="file" id="fileInput" style="display:none" onchange="handleFile(event)" />
+  </div>
+
+  <table id="assetTable">
+    <thead>
+      <tr><th>Asset</th><th>Volume </th><th>Actions</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 </body>
 </html>
