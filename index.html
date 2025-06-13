@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Royal Asset Volume Tracker</title>
+  <title>samRad Asset Volume Tracker</title>
   <style>
     body {
       font-family: 'Georgia', serif;
@@ -88,16 +88,16 @@
 <body>
   <script>
     const password = prompt("Enter password:");
-    if (password !== "quant123") {
+    if (password !== "Barachel-99-25") {
       document.body.innerHTML = "Access denied.";
       throw new Error("Unauthorized");
     }
   </script>
 
-  <h1>Royal Asset Volume Tracker</h1>
+  <h1>samRad Asset Volume Tracker</h1>
   <div style="text-align:center;">
     <input type="text" id="asset" placeholder="Asset (e.g. BTC)" />
-    <input type="number" id="weight" placeholder="Volume (%)" />
+    <input type="number" id="weight" placeholder="Volume " />
     <button onclick="addAsset()">Add</button>
     <button onclick="exportJSON()">Export</button>
     <button onclick="importJSON()">Import</button>
@@ -106,7 +106,7 @@
 
   <table id="assetTable">
     <thead>
-      <tr><th>Asset</th><th>Volume (%)</th><th>Actions</th></tr>
+      <tr><th>Asset</th><th>Volume </th><th>Actions</th></tr>
     </thead>
     <tbody></tbody>
   </table>
