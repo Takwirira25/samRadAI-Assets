@@ -77,7 +77,7 @@
       margin-top: 0.5rem;
     }
 
-    .container {
+    . {
   padding: 2rem 5vw; /* responsive side padding */
   max-width: 100%;
   animation: fadeIn 1s ease-in;
@@ -219,20 +219,24 @@
 <section id="quiz">
   <h2>Radiology Knowledge Quiz</h2>
   <div id="quiz-container" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1); max-width:600px; margin:auto;">
+    
     <div id="start-screen">
       <p>Test your knowledge in radiation oncology, CT, PET, and MRI imaging!</p>
       <button onclick="startQuiz()" style="padding:0.5rem 1rem; font-weight:bold;">Start Quiz</button>
     </div>
+    
     <div id="question-screen" style="display:none;">
       <p id="question-text"></p>
       <div id="options"></div>
       <button onclick="nextQuestion()" id="next-button" style="margin-top:1rem; display:none;">Next</button>
     </div>
-    <div id="result-screen" style="display:none;">
-      <h3>Your Score: <span id="score"></span>/10</h3>
-      <p>Great job! Keep learning and come back to try again soon.</p>
-      <button onclick="startQuiz()">Retry Quiz</button>
+    
+    <div id="result-screen" style="display:none; text-align:center;">
+      <h2 style="color:#00224e;">Your Score: <span id="score"></span>/10</h2>
+      <p id="feedback" style="margin:1rem 0;">Great job! Keep learning and come back to try again soon.</p>
+      <button onclick="startQuiz()" style="padding:0.5rem 1rem; font-weight:bold;">Retry Quiz</button>
     </div>
+    
   </div>
 </section>
 
