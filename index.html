@@ -2,179 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>samRad Asset Volume Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>samRad Health Technologies</title>
   <style>
-    body {
-      font-family: 'Georgia', serif;
-      background: linear-gradient(to right, #4b006e, #1a1a40);
-      color: #f8f4e3;
-      margin: 2em;
-    }
-
-    h1 {
-      color: gold;
-      text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 1em;
-      text-shadow: 2px 2px 4px #000;
-    }
-
-    input, button {
-      padding: 0.6em;
-      margin: 0.5em 0.3em;
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
-    }
-
-    input {
-      background-color: #fff8e1;
-      color: #2e003e;
-    }
-
-    button {
-      background: linear-gradient(to right, #ffd700, #ffae00);
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s ease;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 2em;
-      background-color: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    }
-
-    th, td {
-      border: 1px solid #c49bff;
-      padding: 0.8em;
-      text-align: left;
-      font-size: 1.1em;
-    }
-
-    th {
-      background-color: #6a0dad;
-      color: gold;
-    }
-
-    td {
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-
-    .actions button {
-      background-color: crimson;
-      color: #fff;
-    }
-
-    .actions button:hover {
-      background-color: darkred;
-    }
-
-    ::placeholder {
-      color: #666;
-      opacity: 0.7;
-    }
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; margin: 0; background: #f9f9fb; color: #333; }
+    header, footer { background: #003366; color: #fff; padding: 1.5rem 2rem; }
+    nav a { color: #fff; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    .container { padding: 2rem; max-width: 960px; margin: auto; }
+    h1, h2 { color: #003366; }
+    section { margin-bottom: 3rem; }
+    .card { background: #fff; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
   </style>
 </head>
 <body>
-  <script>
-    const password = prompt("Enter password:");
-    if (password !== "Barachel-99-25") {
-      document.body.innerHTML = "Access denied.";
-      throw new Error("Unauthorized");
-    }
+  <header>
+    <h1>samRad Health Technologies</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#developer">Developer Info</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    let assets = JSON.parse(localStorage.getItem('assets') || '[]');
-    renderTable();
+  <div class="container">
+    <section id="about">
+      <h2>About Us</h2>
+      <p>samRad Health Technologies is a cancer research and technology company dedicated to developing intelligent, automated tools to assist in tumor detection and quantification from radiological imaging. We build open, reproducible AI pipelines that accelerate cancer diagnostics and research.</p>
+    </section>
 
-    function addAsset() {
-      const asset = document.getElementById('asset').value.trim();
-      const weight = parseFloat(document.getElementById('weight').value);
-      if (!asset || isNaN(weight)) return alert('Valid asset and volume required.');
-      assets.push({ asset, weight });
-      saveAssets();
-      document.getElementById('asset').value = '';
-      document.getElementById('weight').value = '';
-      renderTable();
-    }
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>AI Tumor Detection</h3>
+          <p>Real-time risk assessment from DICOM images using trained models.</p>
+        </div>
+        <div class="card">
+          <h3>Clinical Pipeline Tooling</h3>
+          <p>CLI-based tools for research labs to process patient datasets at scale.</p>
+        </div>
+        <div class="card">
+          <h3>Data Integration</h3>
+          <p>Support for CSV metadata, structured clinical tagging, and research export.</p>
+        </div>
+      </div>
+    </section>
 
-    function renderTable() {
-      const tbody = document.querySelector('#assetTable tbody');
-      tbody.innerHTML = '';
-      assets.forEach((entry, i) => {
-        const row = `<tr>
-          <td>${entry.asset}</td>
-          <td>${entry.weight}</td>
-          <td class="actions"><button onclick="removeAsset(${i})">Delete</button></td>
-        </tr>`;
-        tbody.innerHTML += row;
-      });
-    }
+    <section id="developer">
+      <h2>Developer Information</h2>
+      <p>This project uses Python and pandas, and provides a command-line interface for inference and CSV result logging. To run:</p>
+      <pre><code>python main.py <dicom_image_path> <patient_id> <csv_metadata_path></code></pre>
+      <p>Make sure to include a `pipeline_runner.py` module implementing the model logic.</p>
+    </section>
 
-    function removeAsset(index) {
-      assets.splice(index, 1);
-      saveAssets();
-      renderTable();
-    }
+    <section id="certifications">
+      <h2>Certifications & Research Ethics</h2>
+      <ul>
+        <li>Complies with HIPAA data handling standards</li>
+        <li>Model training validated on ethically sourced, anonymized patient data</li>
+        <li>Research protocols follow IRB and institutional review guidelines</li>
+      </ul>
+    </section>
 
-    function saveAssets() {
-      localStorage.setItem('assets', JSON.stringify(assets));
-    }
-
-    function exportJSON() {
-      const blob = new Blob([JSON.stringify(assets, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'assets.json';
-      a.click();
-    }
-
-    function importJSON() {
-      document.getElementById('fileInput').click();
-    }
-
-    function handleFile(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = e => {
-        try {
-          assets = JSON.parse(e.target.result);
-          saveAssets();
-          renderTable();
-        } catch (err) {
-          alert('Invalid JSON file');
-        }
-      };
-      reader.readAsText(file);
-    }
-  </script>
-
-  <h1>samRad Asset Volume Tracker</h1>
-  <div style="text-align:center;">
-    <input type="text" id="asset" placeholder="Asset (e.g. BTC)" />
-    <input type="number" id="weight" placeholder="Volume " />
-    <button onclick="addAsset()">Add</button>
-    <button onclick="exportJSON()">Export</button>
-    <button onclick="importJSON()">Import</button>
-    <input type="file" id="fileInput" style="display:none" onchange="handleFile(event)" />
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: <a href="mailto:research@samrad.tech">research@samrad.tech</a></p>
+      <p>GitHub: <a href="https://github.com/samrad-tech" target="_blank">github.com/samrad-tech</a></p>
+    </section>
   </div>
 
-  <table id="assetTable">
-    <thead>
-      <tr><th>Asset</th><th>Volume </th><th>Actions</th></tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <footer>
+    <p>&copy; 2025 samRad Health Technologies. All rights reserved.</p>
+  </footer>
 </body>
 </html>
