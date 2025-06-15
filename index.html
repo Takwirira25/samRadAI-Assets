@@ -5,13 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>samRad Health Technologies</title>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
       margin: 0;
       background: linear-gradient(to right, #f5f7fa, #c3cfe2);
       color: #333;
@@ -21,18 +16,18 @@
       background: linear-gradient(to right, #00224e, #003366);
       color: #fff;
       padding: 1.5rem 2rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
+      text-align: center;
     }
 
     header h1 {
+      margin: 0;
+      font-size: 2.5rem;
       color: #ffecb3;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-      font-size: 2.5rem;
-      margin: 0;
     }
 
     nav {
@@ -77,70 +72,25 @@
 
     .nav-links {
       text-align: center;
-      margin-top: 1rem;
-    }
-
-    .container {
-      padding: 2rem;
-      max-width: 960px;
-      margin: auto;
-      animation: fadeIn 1s ease-in;
-    }
-
-    h1, h2 {
-      color: #00224e;
-    }
-
-    section {
-      margin-bottom: 3rem;
-      transition: background 0.3s ease;
-    }
-
-    section.active-section {
-      background: #eef3fb;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid #ddd;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     /* Mobile styles */
     @media (max-width: 768px) {
+      .menu-toggle {
+        display: inline-block;
+      }
+
       .nav-links {
         display: none;
-        flex-direction: column;
-        text-align: center;
       }
 
       .nav-links.show {
         display: block;
       }
 
-      .menu-toggle {
-        display: inline-block;
+      nav a {
+        display: block;
+        margin: 0.5rem 0;
       }
     }
   </style>
@@ -158,102 +108,17 @@
     </nav>
   </header>
 
-  <div class="container">
-    <section id="about">
-      <h2>About Us</h2>
-      <p>samRad Health Technologies is a visionary cancer research and healthtech enterprise. Our mission is to pioneer intelligent, automated systems that empower clinicians to detect and quantify tumors from radiological imaging with precision and ease. Our AI pipelines are open, transparent, and designed to speed up diagnostics and enhance medical research.</p>
-      <p>Founded by [Name here], a Zimbabwean PhD student in Physics at the University of [Here] in the United States, the initiative is rooted in a passion for radiation oncology and a heartfelt commitment to expanding access to care. [Name] aspires to forge partnerships with hospitals across Zimbabwe and Southern Africa, uplifting cancer care through technological excellence and shared knowledge.</p>
-    </section>
-
-    <section id="services">
-      <h2>Our Services</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>AI Tumor Detection</h3>
-          <p>Instant analysis of medical scan images (DICOM – Digital Imaging and Communications in Medicine) to assess cancer risk using trained AI models.</p>
-        </div>
-        <div class="card">
-          <h3>Clinical Pipeline Tooling</h3>
-          <p>Command-line tools designed for clinical researchers to process imaging data and patient datasets efficiently and at scale.</p>
-        </div>
-        <div class="card">
-          <h3>Data Integration</h3>
-          <p>Full support for structured CSV metadata, clinical tagging, and export-ready research formats.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="continuous-improvement">
-      <h2>Continuous Improvements</h2>
-      <p>
-        samRad Health Technologies is steadfast in its pursuit of excellence in early cancer detection. Our systems undergo ongoing refinement to uphold the highest standards of clinical relevance, diagnostic accuracy, and technological reliability. We are resolute in our mission to support healthcare providers with tools that are both cutting-edge and dependable.
-      </p>
-      <p>
-        The platform is thoughtfully architected with modularity and interoperability in mind—capable of analyzing radiological imaging and producing structured clinical outputs tailored for research and diagnostic settings. It is engineered to seamlessly integrate into healthcare ecosystems, ensuring adaptability across both urban hospitals and rural clinics.
-      </p>
-      <p>
-        Our commitment is not merely technological, but deeply human: to democratize access to quality oncology diagnostics through intelligent, transparent systems and enduring partnerships in under-resourced regions.
-      </p>
-    </section>
-
-    <section id="certifications">
-      <h2>Certifications & Research Ethics</h2>
-      <ul>
-        <li>Fully compliant with HIPAA data handling protocols</li>
-        <li>Model validation on ethically sourced, anonymized datasets</li>
-        <li>Strict adherence to IRB and institutional ethics review processes</li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Email: <a href="mailto:***@proton.me">***@proton.me</a></p>
-      <p>GitHub: <a href="https://github.com/samrad-tech" target="_blank">github.com/samrad-tech</a></p>
-    </section>
-  </div>
-
   <footer>
     <p style="text-align: center;">&copy; 2025 samRad Health Technologies. All rights reserved.</p>
   </footer>
 
   <script>
-    const navLinks = document.querySelectorAll("nav a");
-    const sections = document.querySelectorAll("section");
     const menuToggle = document.querySelector(".menu-toggle");
-    const navContainer = document.querySelector(".nav-links");
+    const navLinks = document.querySelector(".nav-links");
 
     menuToggle.addEventListener("click", () => {
-      navContainer.classList.toggle("show");
+      navLinks.classList.toggle("show");
     });
-
-    function highlightSection() {
-      let index = sections.length;
-      while (--index && window.scrollY + 80 < sections[index].offsetTop) {}
-      sections.forEach(sec => sec.classList.remove("active-section"));
-      navLinks.forEach(link => link.classList.remove("active"));
-      if (index >= 0) {
-        sections[index].classList.add("active-section");
-        navLinks.forEach(link => {
-          if (link.getAttribute("href") === `#${sections[index].id}`) {
-            link.classList.add("active");
-          }
-        });
-      }
-    }
-
-    function handleHashChange() {
-      const id = location.hash.replace('#', '');
-      const target = document.getElementById(id);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-        setTimeout(highlightSection, 300);
-      }
-    }
-
-    highlightSection();
-    window.addEventListener("scroll", highlightSection);
-    window.addEventListener("hashchange", handleHashChange);
-    navLinks.forEach(link => link.addEventListener("click", () => setTimeout(highlightSection, 300)));
   </script>
 </body>
 </html>
