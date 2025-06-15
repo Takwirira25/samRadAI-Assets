@@ -93,26 +93,11 @@
       transition: background 0.3s ease;
     }
 
-    section h2 {
-      cursor: pointer;
-      user-select: none;
-    }
-
-    section.active-section {
+    section.active {
       background: #eef3fb;
       padding: 1rem;
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .section-content {
-      display: none;
-      margin-top: 1rem;
-    }
-
-    section.active .section-content {
-      display: block;
-      animation: fadeIn 0.4s ease-in;
     }
 
     .card {
@@ -180,58 +165,48 @@
   </header>
 
   <div class="container">
-    <section id="about">
+    <section id="about" class="active">
       <h2>About Us</h2>
-      <div class="section-content">
-        <p>samRad Health Technologies is a visionary cancer research and healthtech enterprise. Our mission is to pioneer intelligent, automated systems that empower clinicians to detect and quantify tumors from radiological imaging with precision and ease. Our AI pipelines are open, transparent, and designed to speed up diagnostics and enhance medical research.</p>
-        <p>Founded by [Name here], a Zimbabwean PhD student in Physics at the University of [Here] in the United States, the initiative is rooted in a passion for radiation oncology and a heartfelt commitment to expanding access to care. [Name] aspires to forge partnerships with hospitals across Zimbabwe and Southern Africa, uplifting cancer care through technological excellence and shared knowledge.</p>
-      </div>
+      <p>samRad Health Technologies is a visionary cancer research and healthtech enterprise. Our mission is to pioneer intelligent, automated systems that empower clinicians to detect and quantify tumors from radiological imaging with precision and ease. Our AI pipelines are open, transparent, and designed to speed up diagnostics and enhance medical research.</p>
+      <p>Founded by [Name here], a Zimbabwean PhD student in Physics at the University of [Here] in the United States, the initiative is rooted in a passion for radiation oncology and a heartfelt commitment to expanding access to care. [Name] aspires to forge partnerships with hospitals across Zimbabwe and Southern Africa, uplifting cancer care through technological excellence and shared knowledge.</p>
     </section>
 
-    <section id="services">
+    <section id="services" class="active">
       <h2>Our Services</h2>
-      <div class="section-content">
-        <div class="grid">
-          <div class="card">
-            <h3>AI Tumor Detection</h3>
-            <p>Instant analysis of medical scan images (DICOM – Digital Imaging and Communications in Medicine) to assess cancer risk using trained AI models.</p>
-          </div>
-          <div class="card">
-            <h3>Clinical Pipeline Tooling</h3>
-            <p>Command-line tools designed for clinical researchers to process imaging data and patient datasets efficiently and at scale.</p>
-          </div>
-          <div class="card">
-            <h3>Data Integration</h3>
-            <p>Full support for structured CSV metadata, clinical tagging, and export-ready research formats.</p>
-          </div>
+      <div class="grid">
+        <div class="card">
+          <h3>AI Tumor Detection</h3>
+          <p>Instant analysis of medical scan images (DICOM – Digital Imaging and Communications in Medicine) to assess cancer risk using trained AI models.</p>
+        </div>
+        <div class="card">
+          <h3>Clinical Pipeline Tooling</h3>
+          <p>Command-line tools designed for clinical researchers to process imaging data and patient datasets efficiently and at scale.</p>
+        </div>
+        <div class="card">
+          <h3>Data Integration</h3>
+          <p>Full support for structured CSV metadata, clinical tagging, and export-ready research formats.</p>
         </div>
       </div>
     </section>
 
-    <section id="continuous-improvement">
+    <section id="continuous-improvement" class="active">
       <h2>Continuous Improvements</h2>
-      <div class="section-content">
-        <p>samRad Health Technologies remains steadfast in its commitment to refining and advancing its systems, continuously striving to enhance the accuracy and reliability of cancer detection. We are dedicated to iterative innovation, ensuring our solutions evolve in tandem with the latest scientific and technological developments to better serve clinicians and patients alike.</p>
-      </div>
+      <p>samRad Health Technologies remains steadfast in its commitment to refining and advancing its systems, continuously striving to enhance the accuracy and reliability of cancer detection. We are dedicated to iterative innovation, ensuring our solutions evolve in tandem with the latest scientific and technological developments to better serve clinicians and patients alike.</p>
     </section>
 
-    <section id="certifications">
+    <section id="certifications" class="active">
       <h2>Certifications & Research Ethics</h2>
-      <div class="section-content">
-        <ul>
-          <li>Fully compliant with HIPAA data handling protocols</li>
-          <li>Model validation on ethically sourced, anonymized datasets</li>
-          <li>Strict adherence to IRB and institutional ethics review processes</li>
-        </ul>
-      </div>
+      <ul>
+        <li>Fully compliant with HIPAA data handling protocols</li>
+        <li>Model validation on ethically sourced, anonymized datasets</li>
+        <li>Strict adherence to IRB and institutional ethics review processes</li>
+      </ul>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="active">
       <h2>Contact Us</h2>
-      <div class="section-content">
-        <p>Email: <a href="mailto:***@proton.me">***@proton.me</a></p>
-        <p>GitHub: <a href="https://github.com/samrad-tech" target="_blank" rel="noopener noreferrer">github.com/samrad-tech</a></p>
-      </div>
+      <p>Email: <a href="mailto:***@proton.me">***@proton.me</a></p>
+      <p>GitHub: <a href="https://github.com/samrad-tech" target="_blank" rel="noopener noreferrer">github.com/samrad-tech</a></p>
     </section>
   </div>
 
@@ -253,10 +228,10 @@
     function highlightSection() {
       let index = sections.length;
       while (--index && window.scrollY + 80 < sections[index].offsetTop) {}
-      sections.forEach(sec => sec.classList.remove("active-section"));
+      sections.forEach(sec => sec.classList.remove("active"));
       navAnchors.forEach(link => link.classList.remove("active"));
       if (index >= 0) {
-        sections[index].classList.add("active-section");
+        sections[index].classList.add("active");
         navAnchors.forEach(link => {
           if (link.getAttribute("href") === `#${sections[index].id}`) {
             link.classList.add("active");
@@ -273,14 +248,6 @@
         setTimeout(highlightSection, 300);
       }
     }
-
-    // Toggle section open/close on h2 click
-    document.querySelectorAll('section h2').forEach(header => {
-      header.addEventListener('click', () => {
-        const section = header.parentElement;
-        section.classList.toggle('active');
-      });
-    });
 
     highlightSection();
     window.addEventListener("scroll", highlightSection);
