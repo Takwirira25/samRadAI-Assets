@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>samRad Health Technologies</title>
   <style>
     body {
@@ -17,7 +17,7 @@
       background: linear-gradient(to right, #00224e, #003366);
       color: #fff;
       padding: 1.5rem 2rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -32,20 +32,23 @@
       margin: 0;
       font-size: 2.2rem;
       color: #ffecb3;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
 
-    nav {
+    nav.nav-links {
       margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: nowrap;
     }
 
     nav a {
-      display: inline-block;
       color: #fff;
-      margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
       position: relative;
+      white-space: nowrap;
     }
 
     nav a::after {
@@ -73,12 +76,6 @@
       color: #fff;
       cursor: pointer;
       margin-top: 0.5rem;
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
     }
 
     .container {
@@ -129,22 +126,20 @@
     }
 
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: inline-block;
-      }
-
-      .nav-links {
+      nav.nav-links {
         display: none;
         flex-direction: column;
         gap: 0.5rem;
+        margin-top: 0.5rem;
       }
-
-      .nav-links.show {
+      nav.nav-links.show {
         display: flex;
       }
-
+      .menu-toggle {
+        display: block;
+      }
       nav a {
-        margin: 0.5rem 0;
+        margin: 0;
       }
     }
 
