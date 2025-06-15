@@ -20,12 +20,17 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+
+      /* Flex layout to center everything */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       color: #ffecb3;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     }
@@ -67,14 +72,15 @@
       font-size: 1.5rem;
       color: #fff;
       cursor: pointer;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
 
     .nav-links {
-      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    /* Mobile styles */
     @media (max-width: 768px) {
       .menu-toggle {
         display: inline-block;
@@ -82,20 +88,29 @@
 
       .nav-links {
         display: none;
+        flex-direction: column;
+        gap: 0.5rem;
       }
 
       .nav-links.show {
-        display: block;
+        display: flex;
       }
 
       nav a {
-        display: block;
         margin: 0.5rem 0;
       }
+    }
+
+    footer {
+      background: linear-gradient(to right, #00224e, #003366);
+      color: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>samRad Health Technologies</h1>
     <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
@@ -109,7 +124,7 @@
   </header>
 
   <footer>
-    <p style="text-align: center;">&copy; 2025 samRad Health Technologies. All rights reserved.</p>
+    <p>&copy; 2025 samRad Health Technologies. All rights reserved.</p>
   </footer>
 
   <script>
@@ -120,5 +135,6 @@
       navLinks.classList.toggle("show");
     });
   </script>
+
 </body>
 </html>
