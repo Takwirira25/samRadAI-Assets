@@ -216,6 +216,25 @@
       <p>GitHub: <a href="https://takwirira25.github.io/samRad-Health-Technologies/" target="_blank" rel="noopener noreferrer">https://takwirira25.github.io/samRad-Health-Technologies/</a></p>
     </section>
   </div>
+<section id="quiz">
+  <h2>Radiology Knowledge Quiz</h2>
+  <div id="quiz-container" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1); max-width:600px; margin:auto;">
+    <div id="start-screen">
+      <p>Test your knowledge in radiation oncology, CT, PET, and MRI imaging!</p>
+      <button onclick="startQuiz()" style="padding:0.5rem 1rem; font-weight:bold;">Start Quiz</button>
+    </div>
+    <div id="question-screen" style="display:none;">
+      <p id="question-text"></p>
+      <div id="options"></div>
+      <button onclick="nextQuestion()" id="next-button" style="margin-top:1rem; display:none;">Next</button>
+    </div>
+    <div id="result-screen" style="display:none;">
+      <h3>Your Score: <span id="score"></span>/10</h3>
+      <p>Great job! Keep learning and come back to try again soon.</p>
+      <button onclick="startQuiz()">Retry Quiz</button>
+    </div>
+  </div>
+</section>
 
   <footer>
     <p>&copy; 2025 samRad Health Technologies. All rights reserved.</p>
@@ -262,6 +281,113 @@
     window.addEventListener("hashchange", handleHashChange);
     navAnchors.forEach(link => link.addEventListener("click", () => setTimeout(highlightSection, 300)));
   </script>
+<script>
+  const quizData = [
+    {
+      question: "What does MRI primarily use to generate images?",
+      options: ["X-rays", "Magnetic fields & radio waves", "Sound waves", "Gamma rays"],
+      answer: 1
+    },
+    {
+      question: "What tracer is commonly used in PET scans?",
+      options: ["Iodine-131", "Technetium-99m", "Fluorodeoxyglucose (FDG)", "Gadolinium"],
+      answer: 2
+    },
+    {
+      question: "CT scans are best for visualizing:",
+      options: ["Soft tissues", "Bone fractures", "Ligaments", "Muscle tears"],
+      answer: 1
+    },
+    {
+      question: "Radiation therapy aims to:",
+      options: ["Cure viral infections", "Kill cancer cells using ionizing radiation", "Deliver chemotherapy", "Visualize tumors"],
+      answer: 1
+    },
+    {
+      question: "Which imaging does NOT use ionizing radiation?",
+      options: ["CT", "PET", "MRI", "X-ray"],
+      answer: 2
+    },
+    {
+      question: "PET-CT combines functional imaging with:",
+      options: ["MRI detail", "CT detail", "Ultrasound mapping", "Bone scan"],
+      answer: 1
+    },
+    {
+      question: "Which of the following is a late side effect of radiation therapy?",
+      options: ["Hair loss", "Skin redness", "Fibrosis", "Nausea"],
+      answer: 2
+    },
+    {
+      question: "MRI contrast agents often contain:",
+      options: ["Lead", "Barium", "Gadolinium", "Iodine"],
+      answer: 2
+    },
+    {
+      question: "Which scan is most sensitive for brain soft tissue detail?",
+      options: ["X-ray", "CT", "PET", "MRI"],
+      answer: 3
+    },
+    {
+      question: "Which of the following improves MRI resolution?",
+      options: ["Higher magnetic field strength", "More X-ray dose", "Lower radiofrequency", "Using ultrasound gel"],
+      answer: 0
+    }
+  ];
 
+  let currentQuestion = 0;
+  let score = 0;
+
+  const startScreen = document.getElementById("start-screen");
+  const questionScreen = document.getElementById("question-screen");
+  const resultScreen = document.getElementById("result-screen");
+  const questionText = document.getElementById("question-text");
+  const optionsDiv = document.getElementById("options");
+  const scoreDisplay = document.getElementById("score");
+  const nextButton = document.getElementById("next-button");
+
+  function startQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    startScreen.style.display = "none";
+    resultScreen.style.display = "none";
+    questionScreen.style.display = "block";
+    showQuestion();
+  }
+
+  function showQuestion() {
+    const q = quizData[currentQuestion];
+    questionText.textContent = `Q${currentQuestion + 1}: ${q.question}`;
+    optionsDiv.innerHTML = "";
+    q.options.forEach((opt, index) => {
+      const btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.style.display = "block";
+      btn.style.margin = "0.5rem 0";
+      btn.style.padding = "0.5rem";
+      btn.onclick = () => {
+        if (index === q.answer) score++;
+        nextButton.style.display = "block";
+        Array.from(optionsDiv.children).forEach(b => {
+          b.disabled = true;
+          b.style.background = (b.textContent === q.options[q.answer]) ? "#c8e6c9" : "#ffcdd2";
+        });
+      };
+      optionsDiv.appendChild(btn);
+    });
+    nextButton.style.display = "none";
+  }
+
+  function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion < quizData.length) {
+      showQuestion();
+    } else {
+      questionScreen.style.display = "none";
+      resultScreen.style.display = "block";
+      scoreDisplay.textContent = score;
+    }
+  }
+</script>
 </body>
 </html>
